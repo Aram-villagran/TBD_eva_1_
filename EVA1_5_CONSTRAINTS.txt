@@ -1,0 +1,212 @@
+Microsoft Windows [Version 10.0.26200.9457]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\aramv>MYSQLSH
+MySQL Shell 8.4.5
+
+Copyright (c) 2016, 2025, Oracle and/or its affiliates.
+Oracle is a registered trademark of Oracle Corporation and/or its affiliates.
+Other names may be trademarks of their respective owners.
+
+Type '\help' or '\?' for help; '\quit' to exit.
+ MySQL  SQL > \connect --mc root@localhost
+Creating a Classic session to 'root@localhost'
+MySQL Error 2003 (HY000): Can't connect to MySQL server on 'localhost:3306' (10061)
+ MySQL  SQL > \connect --mc root@localhost
+Creating a Classic session to 'root@localhost'
+Fetching global names for auto-completion... Press ^C to stop.
+Your MySQL connection id is 8
+Server version: 10.4.32-MariaDB mariadb.org binary distribution
+No default schema selected; type \use <schema> to set one.
+ MySQL  localhost:3306  SQL > use t1;
+Default schema set to `t1`.
+Fetching global names, object names from `t1` for auto-completion... Press ^C to stop.
+ MySQL  localhost:3306  t1  SQL > show tables;
++---------------+
+| Tables_in_t1  |
++---------------+
+| actor         |
+| copia_persona |
+| customer      |
+| persona       |
+| vehiculo      |
++---------------+
+5 rows in set (0.0007 sec)
+ MySQL  localhost:3306  t1  SQL > create tables playera (
+                               -> id_playera int not null key auto_increment,
+                               -> marca varchar (50) not null,
+                               -> modelo varchar (50) not null;
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'tables playera (
+id_playera int not null key auto_increment,
+marca varchar (5...' at line 1
+ MySQL  localhost:3306  t1  SQL > create tables playera ( id_playera int not null key auto_increment, marca varchar (50) not null, modelo varchar (50) not null,
+                               -> material varchar(50) not null,
+                               -> talla varchar (50));
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'tables playera ( id_playera int not null key auto_increment, marca varchar (5...' at line 1
+ MySQL  localhost:3306  t1  SQL > create table playera ( id_playera int not null key auto_increment, marca varchar (50) not null, modelo varchar (50) not null, material varchar(50) not null, talla varchar (50));
+Query OK, 0 rows affected (0.0145 sec)
+ MySQL  localhost:3306  t1  SQL > insert into playera (marca, modelo, material, talla)
+                               -> values ("XXX, "xxx", "Algodon", "chica"), ("XXX", "xxx", "Algodon", "s"), ("XXX", "xxx", "Algdon, "small"),("XXX", "xxx", "Algdon, "grande"), ("XXX", "xxx", "Algdon, "G"), ("XXX", "xxx", "Algdon, "Big");
+                               "> ;
+                               "> );
+                               "> ^C
+ MySQL  localhost:3306  t1  SQL > insert into playera (marca, modelo, material, talla)
+                               ->                                -> values ("XXX, "xxx", "Algodon", "chica"), ("XXX", "xxx", "Algodon", "s"), ("XXX", "xxx", "Algdon", "small"),("XXX", "xxx", "Algdon", "grande"), ("XXX", "xxx", "Algdon", "G"), ("XXX", "xxx", "Algdon", "Big");
+                               "> ;
+                               "> ;
+                               "> ;
+                               "> ;
+                               "> ;
+                               "> ;
+                               "> ;
+                               "> ;
+                               "> ;
+                               "> ;
+                               "> ;
+                               "> ;
+                               "> ;
+                               "> ;
+                               "> ;
+                               "> ;
+                               "> ;
+                               ">
+                               "> ^C
+ MySQL  localhost:3306  t1  SQL > insert into playera (marca, modelo, material, talla)
+                               -> values ("XXX, "xxx", "Algodon", "chica"), ("XXX", "xxx", "Algodon", "s"), ("XXX", "xxx", "Algdon", "small"),("XXX", "xxx", "Algdon", "grande"), ("XXX", "xxx", "Algdon", "G"), ("XXX", "xxx", "Algdon", "Big");
+                               "> insert into playera (marca, modelo, material, talla)
+                               ">                                -> values ("XXX, "xxx", "Algodon", "chica"), ("XXX", "xxx", "Algodon", "s"), ("XXX", "xxx", "Algdon", "small"),("XXX", "xxx", "Algdon", "grande"), ("XXX", "xxx", "Algdon", "G"), ("XXX", "xxx", "Algdon", "Big");^C
+ MySQL  localhost:3306  t1  SQL > insert into playera (marca, modelo, material, talla)
+                               -> values ("XXX", "xxx", "Algodon", "chica"), ("XXX", "xxx", "Algodon", "s"), ("XXX", "xxx", "Algdon", "small"),("XXX", "xxx", "Algdon", "grande"), ("XXX", "xxx", "Algdon", "G"), ("XXX", "xxx", "Algdon", "Big");
+Query OK, 6 rows affected (0.0121 sec)
+
+Records: 6  Duplicates: 0  Warnings: 0
+ MySQL  localhost:3306  t1  SQL > drop table playera;
+Query OK, 0 rows affected (0.0137 sec)
+ MySQL  localhost:3306  t1  SQL > create table playera ( id_playera int not null key auto_increment, marca varchar (50) not null, modelo varchar (50) not null, material varchar(50) not null, talla enum("x-small", "small","medium", "large", "x-large","xx-large"));
+Query OK, 0 rows affected (0.0180 sec)
+ MySQL  localhost:3306  t1  SQL > dec playera
+                               -> descpka^C
+ MySQL  localhost:3306  t1  SQL > desc playera;
++------------+---------------------------------------------------------------+------+-----+---------+----------------+
+| Field      | Type                                                          | Null | Key | Default | Extra          |
++------------+---------------------------------------------------------------+------+-----+---------+----------------+
+| id_playera | int(11)                                                       | NO   | PRI | NULL    | auto_increment |
+| marca      | varchar(50)                                                   | NO   |     | NULL    |                |
+| modelo     | varchar(50)                                                   | NO   |     | NULL    |                |
+| material   | varchar(50)                                                   | NO   |     | NULL    |                |
+| talla      | enum('x-small','small','medium','large','x-large','xx-large') | YES  |     | NULL    |                |
++------------+---------------------------------------------------------------+------+-----+---------+----------------+
+5 rows in set (0.0168 sec)
+ MySQL  localhost:3306  t1  SQL > insert into playera (marca, modelo, material, talla)
+                               -> value ("Adidas", "Algo", "Algodon", "small");
+Query OK, 1 row affected (0.0106 sec)
+ MySQL  localhost:3306  t1  SQL > insert into playera (marca, modelo, material, talla) value ("Adidas", "Algo", "Algodon", "chica");
+Query OK, 1 row affected, 1 warning (0.0096 sec)
+Warning (code 1265): Data truncated for column 'talla' at row 1
+ MySQL  localhost:3306  t1  SQL > show * from playera;
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '* from playera' at line 1
+ MySQL  localhost:3306  t1  SQL > select * from playera;
++------------+--------+--------+----------+-------+
+| id_playera | marca  | modelo | material | talla |
++------------+--------+--------+----------+-------+
+|          1 | Adidas | Algo   | Algodon  | small |
+|          2 | Adidas | Algo   | Algodon  |       |
++------------+--------+--------+----------+-------+
+2 rows in set (0.0009 sec)
+ MySQL  localhost:3306  t1  SQL > create table empleado (
+                               -> id_empleado int not null key auto_increment,
+                               -> nombre varchar(50),
+                               -> apellidos vachar (50));
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '(50))' at line 4
+ MySQL  localhost:3306  t1  SQL > create table empleado ( id_empleado int not null key auto_increment, nombre varchar(50), apellidos varchar (50));
+Query OK, 0 rows affected (0.0084 sec)
+ MySQL  localhost:3306  t1  SQL > drop table empleado;
+Query OK, 0 rows affected (0.0137 sec)
+ MySQL  localhost:3306  t1  SQL > create table empleado (
+                               -> ^C
+ MySQL  localhost:3306  t1  SQL > create table empleado ( id_empleado int not null key auto_increment, nombre varchar(50), apellidos varchar (50), salario decimal (10,2) check (salario>0));
+Query OK, 0 rows affected (0.0175 sec)
+ MySQL  localhost:3306  t1  SQL > desc empleado;
++-------------+---------------+------+-----+---------+----------------+
+| Field       | Type          | Null | Key | Default | Extra          |
++-------------+---------------+------+-----+---------+----------------+
+| id_empleado | int(11)       | NO   | PRI | NULL    | auto_increment |
+| nombre      | varchar(50)   | YES  |     | NULL    |                |
+| apellidos   | varchar(50)   | YES  |     | NULL    |                |
+| salario     | decimal(10,2) | YES  |     | NULL    |                |
++-------------+---------------+------+-----+---------+----------------+
+4 rows in set (0.0187 sec)
+ MySQL  localhost:3306  t1  SQL > insert into empleado (nombre, apellido, salario)
+                               -> value ("juan", perez, 0);
+ERROR: 1054 (42S22): Unknown column 'perez' in 'field list'
+ MySQL  localhost:3306  t1  SQL > insert into empleado (nombre, apellido, salario) value ("juan", perez, 0);
+ERROR: 1054 (42S22): Unknown column 'perez' in 'field list'
+ MySQL  localhost:3306  t1  SQL > insert into empleado (nombre, apellido, salario) value ("juan", "perez", 0);
+ERROR: 1054 (42S22): Unknown column 'apellido' in 'field list'
+ MySQL  localhost:3306  t1  SQL > insert into empleado (nombre, apellidos, salario) value ("juan", "perez", 0);
+ERROR: 4025 (23000): CONSTRAINT `empleado.salario` failed for `t1`.`empleado`
+ MySQL  localhost:3306  t1  SQL > show create table empleado;
++----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table    | Create Table                                                                                                                                                                                                                                                                                                           |
++----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| empleado | CREATE TABLE `empleado` (
+  `id_empleado` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(50) DEFAULT NULL,
+  `apellidos` varchar(50) DEFAULT NULL,
+  `salario` decimal(10,2) DEFAULT NULL CHECK (`salario` > 0),
+  PRIMARY KEY (`id_empleado`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci |
++----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.0005 sec)
+ MySQL  localhost:3306  t1  SQL > insert into empleado^C
+ MySQL  localhost:3306  t1  SQL > insert into empleado (nombre, apellidos, salario) value ("juan", "perez", 100.2);
+Query OK, 1 row affected (0.0026 sec)
+ MySQL  localhost:3306  t1  SQL > select * from empleado;
++-------------+--------+-----------+---------+
+| id_empleado | nombre | apellidos | salario |
++-------------+--------+-----------+---------+
+|           1 | juan   | perez     |  100.20 |
++-------------+--------+-----------+---------+
+1 row in set (0.0008 sec)
+ MySQL  localhost:3306  t1  SQL > create table vehiculo2(
+                               -> id_car int not null key auto_increment,
+                               -> marca varchar(50),
+                               -> modelo varchar(50),
+                               -> year int,
+                               -> ^C
+ MySQL  localhost:3306  t1  SQL > create table vehiculo2(
+                               ->                                -> id_car int not null key auto_increment,
+                               ->                                -> marca varchar(50),
+                               -> modelo varchar(50),^C
+ MySQL  localhost:3306  t1  SQL > create table vehiculo2 (
+                               -> id_car not null key auto_increment,
+                               -> marca varchar(50),
+                               -> modelo varchar(50),
+                               -> year int,
+                               -> colores enum ("rojo", "negro", "blanco", "balck-gray", "zaphiro"),
+                               -> price decimal (10,2) check (price>0 and price<1,000,000);
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'not null key auto_increment,
+marca varchar(50),
+modelo varchar(50),
+year int,...' at line 2
+ MySQL  localhost:3306  t1  SQL > create table vehiculo2 ( id_car int not null key auto_increment, marca varchar(50), modelo varchar(50), year int, colores enum ("rojo", "negro", "blanco", "balck-gray", "zaphiro"), price decimal (10,2) check (price>0 and price<1,000,000);
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '000,000)' at line 1
+ MySQL  localhost:3306  t1  SQL > create table vehiculo2 ( id_car int not null key auto_increment, marca varchar(50), modelo varchar(50), year int, colores enum ("rojo", "negro", "blanco", "balck-gray", "zaphiro"), price decimal (10,2) check (price>0 and price<1000000);
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1
+ MySQL  localhost:3306  t1  SQL > create table vehiculo2 ( id_car int not null key auto_increment, marca varchar(50), modelo varchar(50), year int, colores enum ("rojo", "negro", "blanco", "balck-gray", "zaphiro"), price decimal (10,2) check (price>0 and price<1000000));
+Query OK, 0 rows affected (0.0151 sec)
+ MySQL  localhost:3306  t1  SQL > insert into vehiculo2(marca, modelo, year, colores, price)
+                               -> value ("honda", "accord", 2015, "amarillo", 0);
+ERROR: 4025 (23000): CONSTRAINT `vehiculo2.price` failed for `t1`.`vehiculo2`
+ MySQL  localhost:3306  t1  SQL > insert into vehiculo2(marca, modelo, year, colores, price) value ("honda", "accord", 2015, "rojo", 100);
+Query OK, 1 row affected (0.0032 sec)
+ MySQL  localhost:3306  t1  SQL > select * from table;
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'table' at line 1
+ MySQL  localhost:3306  t1  SQL > select * from vehiculo2;
++--------+-------+--------+------+---------+--------+
+| id_car | marca | modelo | year | colores | price  |
++--------+-------+--------+------+---------+--------+
+|      1 | honda | accord | 2015 | rojo    | 100.00 |
++--------+-------+--------+------+---------+--------+
+1 row in set (0.0004 sec)
+ MySQL  localhost:3306  t1  SQL >

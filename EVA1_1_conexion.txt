@@ -1,0 +1,65 @@
+MySQL Shell 8.4.5
+
+Copyright (c) 2016, 2025, Oracle and/or its affiliates.
+Oracle is a registered trademark of Oracle Corporation and/or its affiliates.
+Other names may be trademarks of their respective owners.
+
+Type '\help' or '\?' for help; '\quit' to exit.
+ MySQL  SQL > \connect --mc root@localhost
+Creating a Classic session to 'root@localhost'
+MySQL Error 2003 (HY000): Can't connect to MySQL server on 'localhost:3306' (10061)
+ MySQL  SQL > \connect --mc root@localhost
+Creating a Classic session to 'root@localhost'
+Fetching global names for auto-completion... Press ^C to stop.
+Your MySQL connection id is 8
+Server version: 10.4.32-MariaDB mariadb.org binary distribution
+No default schema selected; type \use <schema> to set one.
+ MySQL  localhost:3306  SQL > show databases;
++---------------------+
+| Database            |
++---------------------+
+| academiaavanza      |
+| biblioteca          |
+| gestion_recursos_mx |
+| information_schema  |
+| mysql               |
+| performance_schema  |
+| phpmyadmin          |
+| test                |
++---------------------+
+8 rows in set (0.0008 sec)
+ MySQL  localhost:3306  SQL > select academiaavanza;
+ERROR: 1054 (42S22): Unknown column 'academiaavanza' in 'field list'
+ MySQL  localhost:3306  SQL > select gestion_recursos_mx
+                           -> ;
+ERROR: 1054 (42S22): Unknown column 'gestion_recursos_mx' in 'field list'
+ MySQL  localhost:3306  SQL > \select gestion_recursos_mx;
+Unknown command: '\select gestion_recursos_mx;'
+ MySQL  localhost:3306  SQL > use gestion_recursos_mx
+Default schema set to `gestion_recursos_mx`.
+Fetching global names, object names from `gestion_recursos_mx` for auto-completion... Press ^C to stop.
+ MySQL  localhost:3306  gestion_recursos_mx  SQL > show tables;
++-------------------------------+
+| Tables_in_gestion_recursos_mx |
++-------------------------------+
+| categorias_recurso            |
+| datos_curiosos                |
+| distribucion_recursos         |
+| estados                       |
+| historial_estados             |
+| municipios_importantes        |
+| niveles_estado                |
+| niveles_riesgo                |
+| poblacion_estados             |
+| recursos                      |
+| region_riesgo                 |
+| regiones                      |
+| riesgo_recurso_afectacion     |
+| riesgos                       |
+| tipos_poblacion               |
+| vista_distribucion_estado     |
+| vista_estados_completo        |
+| vista_recursos_riesgos        |
+| vista_riesgos_region          |
++-------------------------------+
+19 rows in set (0.0013 sec)

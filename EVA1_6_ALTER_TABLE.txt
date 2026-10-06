@@ -1,0 +1,331 @@
+Microsoft Windows [Version 10.0.26200.9457]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\aramv>mysqlsh
+MySQL Shell 8.4.5
+
+Copyright (c) 2016, 2025, Oracle and/or its affiliates.
+Oracle is a registered trademark of Oracle Corporation and/or its affiliates.
+Other names may be trademarks of their respective owners.
+
+Type '\help' or '\?' for help; '\quit' to exit.
+ MySQL  SQL > \connect --mc root@localhost
+Creating a Classic session to 'root@localhost'
+Fetching global names for auto-completion... Press ^C to stop.
+Your MySQL connection id is 8
+Server version: 10.4.32-MariaDB mariadb.org binary distribution
+No default schema selected; type \use <schema> to set one.
+ MySQL  localhost:3306  SQL > use t1;
+Default schema set to `t1`.
+Fetching global names, object names from `t1` for auto-completion... Press ^C to stop.
+ MySQL  localhost:3306  t1  SQL > show tables;
++---------------+
+| Tables_in_t1  |
++---------------+
+| actor         |
+| copia_persona |
+| customer      |
+| empleado      |
+| persona       |
+| playera       |
+| vehiculo      |
+| vehiculo2     |
++---------------+
+8 rows in set (0.0011 sec)
+ MySQL  localhost:3306  t1  SQL > select * from t1;
+ERROR: 1146 (42S02): Table 't1.t1' doesn't exist
+ MySQL  localhost:3306  t1  SQL > show vehiculo2;
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'vehiculo2' at line 1
+ MySQL  localhost:3306  t1  SQL > desc vehiculo2;
++---------+------------------------------------------------------+------+-----+---------+----------------+
+| Field   | Type                                                 | Null | Key | Default | Extra          |
++---------+------------------------------------------------------+------+-----+---------+----------------+
+| id_car  | int(11)                                              | NO   | PRI | NULL    | auto_increment |
+| marca   | varchar(50)                                          | YES  |     | NULL    |                |
+| modelo  | varchar(50)                                          | YES  |     | NULL    |                |
+| year    | int(11)                                              | YES  |     | NULL    |                |
+| colores | enum('rojo','negro','blanco','balck-gray','zaphiro') | YES  |     | NULL    |                |
+| price   | decimal(10,2)                                        | YES  |     | NULL    |                |
++---------+------------------------------------------------------+------+-----+---------+----------------+
+6 rows in set (0.0172 sec)
+ MySQL  localhost:3306  t1  SQL > select * from vehiculo2;
++--------+-------+--------+------+---------+--------+
+| id_car | marca | modelo | year | colores | price  |
++--------+-------+--------+------+---------+--------+
+|      1 | honda | accord | 2015 | rojo    | 100.00 |
++--------+-------+--------+------+---------+--------+
+1 row in set (0.0085 sec)
+ MySQL  localhost:3306  t1  SQL > create table persona_mod(
+                               -> id int not null key auto_increment,
+                               -> nom varchar (10),
+                               -> apellido varchar (10));
+Query OK, 0 rows affected (0.0112 sec)
+ MySQL  localhost:3306  t1  SQL > desc perosna_mod;
+ERROR: 1146 (42S02): Table 't1.perosna_mod' doesn't exist
+ MySQL  localhost:3306  t1  SQL > desc persona_mod;
++----------+-------------+------+-----+---------+----------------+
+| Field    | Type        | Null | Key | Default | Extra          |
++----------+-------------+------+-----+---------+----------------+
+| id       | int(11)     | NO   | PRI | NULL    | auto_increment |
+| nom      | varchar(10) | YES  |     | NULL    |                |
+| apellido | varchar(10) | YES  |     | NULL    |                |
++----------+-------------+------+-----+---------+----------------+
+3 rows in set (0.0188 sec)
+ MySQL  localhost:3306  t1  SQL > alter table persona_mod
+                               -> add fecha_nac date not null
+                               -> ^C
+ MySQL  localhost:3306  t1  SQL > alter table persona_mod
+                               -> add fecha_nac date not null after id;
+Query OK, 0 rows affected (0.0170 sec)
+
+Records: 0  Duplicates: 0  Warnings: 0
+ MySQL  localhost:3306  t1  SQL > desc persona_mod;
++-----------+-------------+------+-----+---------+----------------+
+| Field     | Type        | Null | Key | Default | Extra          |
++-----------+-------------+------+-----+---------+----------------+
+| id        | int(11)     | NO   | PRI | NULL    | auto_increment |
+| fecha_nac | date        | NO   |     | NULL    |                |
+| nom       | varchar(10) | YES  |     | NULL    |                |
+| apellido  | varchar(10) | YES  |     | NULL    |                |
++-----------+-------------+------+-----+---------+----------------+
+4 rows in set (0.0181 sec)
+ MySQL  localhost:3306  t1  SQL > alter table persona_mod
+                               -> drop fecha_nac;
+Query OK, 0 rows affected (0.0141 sec)
+
+Records: 0  Duplicates: 0  Warnings: 0
+ MySQL  localhost:3306  t1  SQL > desc persona_mod;
++----------+-------------+------+-----+---------+----------------+
+| Field    | Type        | Null | Key | Default | Extra          |
++----------+-------------+------+-----+---------+----------------+
+| id       | int(11)     | NO   | PRI | NULL    | auto_increment |
+| nom      | varchar(10) | YES  |     | NULL    |                |
+| apellido | varchar(10) | YES  |     | NULL    |                |
++----------+-------------+------+-----+---------+----------------+
+3 rows in set (0.0155 sec)
+ MySQL  localhost:3306  t1  SQL > alter table persona_mod;
+Query OK, 0 rows affected (0.0007 sec)
+
+Records: 0  Duplicates: 0  Warnings: 0
+ MySQL  localhost:3306  t1  SQL > alter table persona_mod
+                               -> add fecha_nac date not null;
+Query OK, 0 rows affected (0.0146 sec)
+
+Records: 0  Duplicates: 0  Warnings: 0
+ MySQL  localhost:3306  t1  SQL > desc persona_mod;
++-----------+-------------+------+-----+---------+----------------+
+| Field     | Type        | Null | Key | Default | Extra          |
++-----------+-------------+------+-----+---------+----------------+
+| id        | int(11)     | NO   | PRI | NULL    | auto_increment |
+| nom       | varchar(10) | YES  |     | NULL    |                |
+| apellido  | varchar(10) | YES  |     | NULL    |                |
+| fecha_nac | date        | NO   |     | NULL    |                |
++-----------+-------------+------+-----+---------+----------------+
+4 rows in set (0.0138 sec)
+ MySQL  localhost:3306  t1  SQL > alter table persona_mod
+                               -> rename column id to id_persona;
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'column id to id_persona' at line 2
+ MySQL  localhost:3306  t1  SQL > alter table persona_mod
+                               -> change nom nombre varchar(50) not null;
+Query OK, 0 rows affected (0.0231 sec)
+
+Records: 0  Duplicates: 0  Warnings: 0
+ MySQL  localhost:3306  t1  SQL > desc persona_mod;
++-----------+-------------+------+-----+---------+----------------+
+| Field     | Type        | Null | Key | Default | Extra          |
++-----------+-------------+------+-----+---------+----------------+
+| id        | int(11)     | NO   | PRI | NULL    | auto_increment |
+| nombre    | varchar(50) | NO   |     | NULL    |                |
+| apellido  | varchar(10) | YES  |     | NULL    |                |
+| fecha_nac | date        | NO   |     | NULL    |                |
++-----------+-------------+------+-----+---------+----------------+
+4 rows in set (0.0101 sec)
+ MySQL  localhost:3306  t1  SQL > alter table persona_mod
+                               -> rename column id to id_persona;
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'column id to id_persona' at line 2
+ MySQL  localhost:3306  t1  SQL > alter table persona_mod
+                               -> change apellido apellido_pat varchar(50) not null;
+Query OK, 0 rows affected (0.0272 sec)
+
+Records: 0  Duplicates: 0  Warnings: 0
+ MySQL  localhost:3306  t1  SQL > alter table persona_mod
+                               -> add apellido_mat varchar (50) after apellido_pat;
+Query OK, 0 rows affected (0.0141 sec)
+
+Records: 0  Duplicates: 0  Warnings: 0
+ MySQL  localhost:3306  t1  SQL > desc persona_mod;
++--------------+-------------+------+-----+---------+----------------+
+| Field        | Type        | Null | Key | Default | Extra          |
++--------------+-------------+------+-----+---------+----------------+
+| id           | int(11)     | NO   | PRI | NULL    | auto_increment |
+| nombre       | varchar(50) | NO   |     | NULL    |                |
+| apellido_pat | varchar(50) | NO   |     | NULL    |                |
+| apellido_mat | varchar(50) | YES  |     | NULL    |                |
+| fecha_nac    | date        | NO   |     | NULL    |                |
++--------------+-------------+------+-----+---------+----------------+
+5 rows in set (0.0110 sec)
+ MySQL  localhost:3306  t1  SQL > alter table persona_mod
+                               -> rename column id to id_persona;
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'column id to id_persona' at line 2
+ MySQL  localhost:3306  t1  SQL > alter table persona_mod
+                               -> change  id id_persona int not null key auto_increment;
+ERROR: 1068 (42000): Multiple primary key defined
+ MySQL  localhost:3306  t1  SQL > desc persona_mod;
++--------------+-------------+------+-----+---------+----------------+
+| Field        | Type        | Null | Key | Default | Extra          |
++--------------+-------------+------+-----+---------+----------------+
+| id           | int(11)     | NO   | PRI | NULL    | auto_increment |
+| nombre       | varchar(50) | NO   |     | NULL    |                |
+| apellido_pat | varchar(50) | NO   |     | NULL    |                |
+| apellido_mat | varchar(50) | YES  |     | NULL    |                |
+| fecha_nac    | date        | NO   |     | NULL    |                |
++--------------+-------------+------+-----+---------+----------------+
+5 rows in set (0.0188 sec)
+ MySQL  localhost:3306  t1  SQL > show create table persona_mod;
++-------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table       | Create Table                                                                                                                                                                                                                                                                                                 |
++-------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| persona_mod | CREATE TABLE `persona_mod` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(50) NOT NULL,
+  `apellido_pat` varchar(50) NOT NULL,
+  `apellido_mat` varchar(50) DEFAULT NULL,
+  `fecha_nac` date NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci |
++-------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.0008 sec)
+ MySQL  localhost:3306  t1  SQL > alter table persona_mod
+                               -> drop index id;
+ERROR: 1091 (42000): Can't DROP INDEX `id`; check that it exists
+ MySQL  localhost:3306  t1  SQL > alter table persona_mod drop column id;
+Query OK, 0 rows affected (0.0353 sec)
+
+Records: 0  Duplicates: 0  Warnings: 0
+ MySQL  localhost:3306  t1  SQL > alter table persona_mod
+                               -> add id_persona int not null key auto_incrent;
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 2
+ MySQL  localhost:3306  t1  SQL > alter table persona_mod add id_persona int not null key auto_increment;
+Query OK, 0 rows affected (0.0294 sec)
+
+Records: 0  Duplicates: 0  Warnings: 0
+ MySQL  localhost:3306  t1  SQL > desc persona;
++------------+-------------+------+-----+---------+----------------+
+| Field      | Type        | Null | Key | Default | Extra          |
++------------+-------------+------+-----+---------+----------------+
+| id_persona | int(11)     | NO   | PRI | NULL    | auto_increment |
+| nombre     | varchar(50) | NO   |     | NULL    |                |
+| ap_paterno | varchar(50) | NO   |     | NULL    |                |
+| ap_materno | varchar(50) | YES  |     | NULL    |                |
+| fecha_nac  | date        | NO   |     | NULL    |                |
++------------+-------------+------+-----+---------+----------------+
+5 rows in set (0.0201 sec)
+ MySQL  localhost:3306  t1  SQL > alter table persona_mod
+                               -> rename to persona_modificate;
+Query OK, 0 rows affected (0.0152 sec)
+ MySQL  localhost:3306  t1  SQL > desc persona_modificada;
+ERROR: 1146 (42S02): Table 't1.persona_modificada' doesn't exist
+ MySQL  localhost:3306  t1  SQL > desc persona_modificate;
++--------------+-------------+------+-----+---------+----------------+
+| Field        | Type        | Null | Key | Default | Extra          |
++--------------+-------------+------+-----+---------+----------------+
+| nombre       | varchar(50) | NO   |     | NULL    |                |
+| apellido_pat | varchar(50) | NO   |     | NULL    |                |
+| apellido_mat | varchar(50) | YES  |     | NULL    |                |
+| fecha_nac    | date        | NO   |     | NULL    |                |
+| id_persona   | int(11)     | NO   | PRI | NULL    | auto_increment |
++--------------+-------------+------+-----+---------+----------------+
+5 rows in set (0.0212 sec)
+ MySQL  localhost:3306  t1  SQL > create table estudiante (
+                               -> id_es int,
+                               -> nombre varchar(10),
+                               -> apellidos varchar(50) not null,
+                               -> carrera varchar (50));
+Query OK, 0 rows affected (0.0156 sec)
+ MySQL  localhost:3306  t1  SQL > alter table estudiante
+                               -> change id id_estudiante int not null auto_increment,
+                               -> add fecha_nac date not null after apellidos,
+                               -> change nombre name varchar (50) not null,
+                               -> rename column apellidos to apellido_pat,
+                               -> add apellido_mat varchar(50) not null;
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'column apellidos to apellido_pat,
+add apellido_mat varchar(50) not null' at line 5
+ MySQL  localhost:3306  t1  SQL > alter table estudiante
+                               -> change id id_estudiante int not null key auto_increment;
+ERROR: 1054 (42S22): Unknown column 'id' in 'estudiante'
+ MySQL  localhost:3306  t1  SQL > alter table estudiante drop column id;
+ERROR: 1091 (42000): Can't DROP COLUMN `id`; check that it exists
+ MySQL  localhost:3306  t1  SQL > alter table estudiante
+                               -> change id_es id_estudiante int not null key auto_increment;
+Query OK, 0 rows affected (0.0367 sec)
+
+Records: 0  Duplicates: 0  Warnings: 0
+ MySQL  localhost:3306  t1  SQL > alter table estudiante
+                               -> add fecha_nac date not null after apellidos;
+Query OK, 0 rows affected (0.0173 sec)
+
+Records: 0  Duplicates: 0  Warnings: 0
+ MySQL  localhost:3306  t1  SQL > alter table estudiante
+                               -> change nombre nombre varchar(50) not null;
+Query OK, 0 rows affected (0.0261 sec)
+
+Records: 0  Duplicates: 0  Warnings: 0
+ MySQL  localhost:3306  t1  SQL > alter table estudiante
+                               -> rename column apellidos to apellido_pat;
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'column apellidos to apellido_pat' at line 2
+ MySQL  localhost:3306  t1  SQL > desc estudiante;
++---------------+-------------+------+-----+---------+----------------+
+| Field         | Type        | Null | Key | Default | Extra          |
++---------------+-------------+------+-----+---------+----------------+
+| id_estudiante | int(11)     | NO   | PRI | NULL    | auto_increment |
+| nombre        | varchar(50) | NO   |     | NULL    |                |
+| apellidos     | varchar(50) | NO   |     | NULL    |                |
+| fecha_nac     | date        | NO   |     | NULL    |                |
+| carrera       | varchar(50) | YES  |     | NULL    |                |
++---------------+-------------+------+-----+---------+----------------+
+5 rows in set (0.0170 sec)
+ MySQL  localhost:3306  t1  SQL > alter table estudiante
+                               -> change apellidos apellido_pat varchar(50) not null;
+Query OK, 0 rows affected (0.0127 sec)
+
+Records: 0  Duplicates: 0  Warnings: 0
+ MySQL  localhost:3306  t1  SQL > alter table estudiante;
+Query OK, 0 rows affected (0.0006 sec)
+
+Records: 0  Duplicates: 0  Warnings: 0
+ MySQL  localhost:3306  t1  SQL > alter table estudiante
+                               -> add apellido_mat varchar(50) not null;
+Query OK, 0 rows affected (0.0057 sec)
+
+Records: 0  Duplicates: 0  Warnings: 0
+ MySQL  localhost:3306  t1  SQL > alter table estudiante
+                               -> drop column apellido_mat
+                               -> ;
+Query OK, 0 rows affected (0.0154 sec)
+
+Records: 0  Duplicates: 0  Warnings: 0
+ MySQL  localhost:3306  t1  SQL > alter table estudiante add apellido_mat varchar(50) not null after apellido_pat;
+Query OK, 0 rows affected (0.0151 sec)
+
+Records: 0  Duplicates: 0  Warnings: 0
+ MySQL  localhost:3306  t1  SQL > alter table estudiante rename to matricula;
+Query OK, 0 rows affected (0.0075 sec)
+ MySQL  localhost:3306  t1  SQL > desc matricula;
++---------------+-------------+------+-----+---------+----------------+
+| Field         | Type        | Null | Key | Default | Extra          |
++---------------+-------------+------+-----+---------+----------------+
+| id_estudiante | int(11)     | NO   | PRI | NULL    | auto_increment |
+| nombre        | varchar(50) | NO   |     | NULL    |                |
+| apellido_pat  | varchar(50) | NO   |     | NULL    |                |
+| apellido_mat  | varchar(50) | NO   |     | NULL    |                |
+| fecha_nac     | date        | NO   |     | NULL    |                |
+| carrera       | varchar(50) | YES  |     | NULL    |                |
++---------------+-------------+------+-----+---------+----------------+
+6 rows in set (0.0166 sec)
+ MySQL  localhost:3306  t1  SQL > alter table matricula
+                               -> rename column id_estudiante to id_es;
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'column id_estudiante to id_es' at line 2
+ MySQL  localhost:3306  t1  SQL > alter table matricula rename primary key id_estudiante to id_es;
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'primary key id_estudiante to id_es' at line 1
+ MySQL  localhost:3306  t1  SQL > C:\Users\aramv\Desktop\taller de bases de datos\EVA1_5_CONSTRAINTS.tx^C
+ MySQL  localhost:3306  t1  SQL >
